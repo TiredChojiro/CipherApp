@@ -1,0 +1,66 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Caesar Cipher</PageTitle>
+
+<h3>Caesar Cipher</h3>
+
+<div class="mb-3">
+    <label for="Text" class="form-label">Введите текст:</label>
+    <textarea type="text" class="form-control" rows="1" placeholder="Текст" @bind="inputText"></textarea>
+</div>
+
+
+<div class="mb-3">
+    <label for="Key" class="form-label">Сдвиг:</label>
+    <textarea class="form-control" rows="1" @bind="shift"></textarea>
+    @if (shiftError)
+    {
+        <p style="color: red;">Значение сдвига должно находиться в диапазоне от 1 до 25.</p>
+    }
+</div>
+
+<div class="mb-3">
+    <button type="button" class="btn btn-primary" @onclick="Encrypt">Зашифровать</button>
+    <button type="button" class="btn btn-primary" @onclick="Decrypt">Расшифровать</button>
+</div>
+
+
+<div class="mb-3">
+    <label for="Result" class="form-label">Результат:</label>
+    <textarea class="form-control" rows="1" readonly>@outputText> </textarea>
+</div>
+
+@code {
+    private string inputText = "";
+    private byte shift = 0;
+    private string outputText = "";
+    private bool shiftError = false;
+
+    private void Encrypt()
+    {
+        try
+        {
+            outputText = CipherApp.Ciphers.CaesarCipher.Encrypt(inputText, shift);
+            shiftError = false;
+        }
+        catch (ArgumentException)
+        {
+            shiftError = true;
+        }
+    }
+
+    private void Decrypt()
+    {
+
+        try
+        {
+            outputText = CipherApp.Ciphers.CaesarCipher.Decrypt(inputText, shift);
+            shiftError = false;
+        }
+        catch(ArgumentException)
+        {
+            shiftError = true;
+        }
+    }
+}
