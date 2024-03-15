@@ -1,9 +1,48 @@
 ﻿@page "/VigenereCipher"
+@rendermode InteractiveServer
 
 <PageTitle>Vigenere Cipher</PageTitle>
 
 <h3>Vigenere Cipher</h3>
 
+<div class="mb-3">
+    <label for="Text" class="form-label">Введите текст:</label>
+    <textarea type="text" class="form-control" rows="1" placeholder="Текст" @bind="inputText"></textarea>
+</div>
+
+
+<div class="mb-3">
+    <label for="Key" class="form-label">Ключ:</label>
+    <textarea class="form-control" rows="1" @bind="key"></textarea>
+</div>
+
+<div class="mb-3">
+    <button type="button" class="btn btn-primary" @onclick="Encrypt">Зашифровать</button>
+    <button type="button" class="btn btn-primary" @onclick="Decrypt">Расшифровать</button>
+</div>
+
+
+<div class="mb-3">
+    <label for="Result" class="form-label">Результат:</label>
+    <textarea class="form-control" rows="1" readonly>@outputText> </textarea>
+</div>
+
+
+
+
 @code {
+    private string inputText = "";
+    private string key = "";
+    private string outputText = "";
+
+    private void Encrypt()
+    {
+        outputText = CipherApp.Ciphers.VigenereCipher.Encrypt(inputText, key);
+    }
+
+    private void Decrypt()
+    {
+        outputText = CipherApp.Ciphers.VigenereCipher.Decrypt(inputText, key);
+    }
 
 }
