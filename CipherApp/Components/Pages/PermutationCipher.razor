@@ -11,21 +11,22 @@
     <p class="text-danger">@errorMessage</p>
 }
 
-<div class="form-group">
-    <label for="text">Введите текст:</label>
-    <input class="form-control" @bind="text" />
+<div class="form-group mb-3">
+    <label for="text" class="form-label">Введите текст:</label>
+    <input class="form-control" placeholder="Текст" @bind="text" />
 </div>
 
 <div class="form-group mb-3">
-    <label for="permutationKey">Введите ключ:</label>
-    <input class="form-control" @bind="permutationKeyString" />
+    <label for="permutationKey" class="form-label">Введите ключ:</label>
+    <input class="form-control" placeholder="Ключ" @bind="permutationKeyString" />
+</div>
+<div class="mb-3">
+    <button class="btn btn-primary" @onclick="EncryptText">Зашифровать</button>
+    <button class="btn btn-primary" @onclick="DecryptText">Расшифровать</button>
 </div>
 
-<button class="btn btn-primary mt-3" @onclick="EncryptText">Зашифровать</button>
-<button class="btn btn-primary mt-3" @onclick="DecryptText">Расшифровать</button>
-
-<div class="form-group mt-3">
-    <label for="ciphertext">Результат:</label>
+<div class="form-group mb-3">
+    <label for="ciphertext" class="form-label">Результат:</label>
     <textarea class="form-control" rows="1" readonly>@result> </textarea>
 </div>
 

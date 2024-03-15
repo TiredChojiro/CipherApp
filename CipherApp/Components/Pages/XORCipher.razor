@@ -1,9 +1,10 @@
-﻿@page "/VigenereCipher"
+﻿@page "/XORCipher"
 @rendermode InteractiveServer
 
-<PageTitle>Vigenere Cipher</PageTitle>
+<PageTitle>XOR Cipher</PageTitle>
 
-<h3>Vigenere Cipher</h3>
+
+<h3>XOR Cipher</h3>
 
 <div class="mb-3">
     <label for="Text" class="form-label">Введите текст:</label>
@@ -12,8 +13,8 @@
 
 
 <div class="mb-3">
-    <label for="Key" class="form-label" >Введите ключ:</label>
-    <textarea class="form-control" rows="1" placeholder="Ключ"  @bind="key"></textarea>
+    <label for="Key" class="form-label">Введите ключ:</label>
+    <textarea class="form-control" rows="1" placeholder="Ключ" @bind="key"></textarea>
 </div>
 
 <div class="mb-3">
@@ -28,8 +29,6 @@
 </div>
 
 
-
-
 @code {
     private string inputText = "";
     private string key = "";
@@ -37,12 +36,11 @@
 
     private void Encrypt()
     {
-        outputText = CipherApp.Ciphers.VigenereCipher.Encrypt(inputText, key);
+        outputText = CipherApp.Ciphers.XORCipher.Encrypt(inputText, key);
     }
 
     private void Decrypt()
     {
-        outputText = CipherApp.Ciphers.VigenereCipher.Decrypt(inputText, key);
+        outputText = CipherApp.Ciphers.XORCipher.Decrypt(inputText, key);
     }
-
 }
